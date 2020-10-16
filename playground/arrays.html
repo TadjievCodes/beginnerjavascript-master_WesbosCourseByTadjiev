@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>
+        Arrays Introduction by Wes Bos
+    </title>
+    <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+    <script>
+        const names = ['wes', 'kait', 'snickers', 'wes', 'kait', 'snickers', 'wes', 'kait', 'snickers', 'wes', 'kait', 'snickers', 'wes', 'kait', 'snickers',
+            'wes', 'kait', 'snickers', 'wes', 'kait', 'snickers', 'wes', 'kait', 'snickers',
+        ];
+        //IT's usually recommended that no comma end of the array. But it's fine here no error anyways
+
+        // There are no keys in arrays so only index numbers. That's the difference with Objects as objects have keys or properties of that value like car: Mazda
+        // If we type Array.isArray(names) in the console, It will give us whether it's true or false meaning if It's an array or not
+
+        console.log(names[0]); // so we access the wes 0 index array
+        console.log(names.length); //It returns 3 as it's not 0 based the length property shows there are 3 items not zero based again remember that
+        console.log(names[2]);
+
+
+        //There's another method to access the last item in the array [names.length - 1] so returns the last one
+        console.log(names[names.length - 1]);
+
+
+        //Mutation methods === Do change the Original Data 
+
+        const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        const numbersBackwards = numbers.reverse();
+        console.log(numbersBackwards);
+        //So it gives us the numbers in the backwards way
+        console.log(numbers);
+        //So  here it still gives use the backwards order and you would ask why?
+        //Well because, the order has been changed by reverse so arrays are placed on reverse opposite way of the direction
+        //It has been changed from what it was initially set out to be
+        //But it's advised not to mutate arrays in this way. It'd rather be better to create another version of the similar array
+
+        //Immutable version of The Arrays do not change the original Data
+
+        const pizzaSlice = numbers.slice(2, 4);
+        console.log(pizzaSlice);
+        //So this slice method kind of removes the data from the array with the index number 2 and 4 but wonderfully when we call console.log(numbers)
+        //again, It will still show all the 9 numbers that we have means overall it just deletes those 2 numbers in that instant moment but not fully
+
+
+        // // Mutation Methods - DO CHANGE THE ORIGINAL DATA
+        //const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        // anytime you want to use a mutation method and NOT mutate the orignal array
+        // we need to take a copy of the array
+        //So this kinda creates a reversed array wihout sill changing the original data
+        const numbersReversed = [...numbers].reverse();
+        console.log(numbersReversed);
+        numbers.reverse();
+        console.log(numbers);
+        // // Immutable - THEY DO NOT CHANGE THE ORIGINAL DATA
+        //const pizzaSlice = numbers.slice(2, 4);
+        console.log(pizzaSlice);
+        console.log(numbers);
+
+
+
+        // Push adds to the BACK of the array, adding after the last index of the current array. It also expands the size of the array
+        names.push('lux');
+        console.log(names);
+
+        const names2 = [...names, 'lux'];
+        //This is another thing to do the same as push in a different way. What we do is we create a new variable names2 and then connect the names array variable
+        //to it by typing ...names, "lux"  and lux the item we're adding.That's a pretty common thing to do in React 
+
+        //to add to the front of the array we use .unshift
+        names.unshift('poppy');
+        console.log(names);
+
+        //so again immutable way was through creating a new variable and then adding that poppy 
+        const names3 = ['poppy', ...names];
+        console.log(names3);
+
+        //Slice and Splice are some things that always you goof up make mistakes about Important to understand and remember them
+        //Slice is immutable and splice is mutable
+
+
+
+
+
+
+        console.log(numbers);
+        numbers.splice(3, 2);
+        console.log(numbers);
+
+        //So the first digit 3 commands where to start adding the numbers and second digit commands on which index to remove
+        //We could also do it like without removing 
+
+        //Other examples
+        const pets = ["dog", "cat", "fly", "bug", "ox"];
+        //The following code adds pig, duck, and emu after cat while removing fly and bug items
+        pets.splice(2, 2, "pig", "duck", "emu");
+        console.log(pets);
+
+
+
+        pets.splice(2, 0, "pig", "duck", "emu");
+        //This way we make additions without removing any elements. The code adds pig , duck, and emu without removing any elements.
+        console.log(pets);
+
+
+
+        const bikes = ['bianchi', 'miele', 'panasonic', 'miyata'];
+        const newBikes = [
+            ...bikes.slice(0, 2),
+            'benotto',
+            ...bikes.slice(2)
+        ];
+
+        const newBikes2 = [
+            ...newBikes.slice(0, 3),
+            ...newBikes.slice(4)
+        ];
+        console.log(newBikes2);
+
+
+
+
+
+        const comments = [{
+            text: 'Cool Beans',
+            id: 123
+        }, {
+            text: 'Love this',
+            id: 133
+        }, {
+            text: 'Neato',
+            id: 233
+        }, {
+            text: 'good bikes',
+            id: 333
+        }, {
+            text: 'so good',
+            id: 433
+        }, ];
+
+
+
+        function deleteComment(id, comments) {
+            // first find the index of the item in the array
+
+            //findIndex is an in built function method to get sth by it's Index just like .selectedIndex
+            const commentIndex = comments.findIndex(comment => comment.id === id);
+            // make a new array without that item in it
+            return [
+                ...comments.slice(0, commentIndex),
+                ...comments.slice(commentIndex + 1),
+            ];
+            // return our new array
+        }
+
+
+        //Amother easier longer way to write this function
+
+        function deleteComment(id, comments) {
+            // first find the index of the item in the array
+            //findIndex is an in built function method to get sth by it's Index just like .selectedIndex
+
+        }
+
+
+        const kaitIndex = names.findIndex(name => {
+            if (name === "kait") {
+                return true;
+            } else {
+                return false;
+            }
+        });
+        console.log(kaitIndex);
+        console.log(names[kateIndex]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+        console.log(names[0]);
+        console.log(names.length);
+        console.log(names[names.length - 1]);
+
+        names.push('lux');
+        console.log(names);
+        const names2 = [...names, 'lux'];
+        names.unshift('poppy');
+        console.log(names);
+        const names3 = ['poppy', ...names];
+        console.log(names3);
+
+        const bikes = ['bianchi', 'miele', 'panasonic', 'miyata'];
+        const newBikes = [
+            ...bikes.slice(0, 2),
+            'benotto',
+            ...bikes.slice(2)
+        ];
+
+        const newBikes2 = [
+            ...newBikes.slice(0, 3),
+            ...newBikes.slice(4)
+        ];
+        console.log(newBikes2);
+
+        //
+        const comments = [{
+            text: 'Cool Beans',
+            id: 123
+        }, {
+            text: 'Love this',
+            id: 133
+        }, {
+            text: 'Neato',
+            id: 233
+        }, {
+            text: 'good bikes',
+            id: 333
+        }, {
+            text: 'so good',
+            id: 433
+        }, ];
+
+        function deleteComment(id, comments) {
+            // first find the index of the item in the array
+            const commentIndex = comments.findIndex(comment => comment.id === id);
+            // make a new array without that item in it
+            return [
+                ...comments.slice(0, commentIndex),
+                ...comments.slice(commentIndex + 1),
+            ];
+            // return our new array
+        }
+
+        const kaitIndex = names.findIndex(name => name === 'kait');
+        const newNamesWithOutKait = [
+            // get everything up to kait index
+            ...names.slice(0, kaitIndex),
+            // everything after Kait index
+            ...names.slice(kaitIndex + 1)
+        ];
+        console.log(newNamesWithOutKait);
+
+        // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+        // console.log(numbers);
+        // numbers.splice(3, 2);
+        // console.log(numbers);
+
+        // // Mutation Methods - DO CHANGE THE ORIGINAL DATA
+        // const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        // // anytime you want to use a mutation method and NOT mutate the orignal array
+        // // we need to take a copy of the array
+        // const numbersReversed = [...numbers].reverse();
+        // console.log(numbersReversed);
+        // // numbers.reverse();
+        // console.log(numbers);
+        // // Immutable - THEY DO NOT CHANGE THE ORIGINAL DATA
+        // const pizzaSlice = numbers.slice(2, 4);
+        // console.log(pizzaSlice);
+        // console.log(numbers);
+
+        */
+    </script>
+</body>
+
+</html>

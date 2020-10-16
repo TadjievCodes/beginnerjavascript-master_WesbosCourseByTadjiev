@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="../base.css">
+</head>
+
+<body>
+    <script>
+        // function outer() {
+        //   const outerVar = 'Hey I am the outer Var!';
+        //   function inner() {
+        //     const innerVar = 'Hey I am an inner var!';
+        //     console.log(innerVar);
+        //     console.log(outerVar);
+        //   }
+        //   // This is how we're calling the inner function inside the outer with return keyword(we could also fo return function inner() on line 15)
+        //   return inner;
+        
+        // }
+          //outer();
+
+        // The thing about closures even if the function executed already, it's still able to return the data or the values from variables
+        // as normally the functions once executed as per scoping and sth is not returned then it's just not gonna be returned but closures make it
+        // possible still to access them
+
+         // First we make it equal or assign it to the outer function but it returns the inner data as well 
+        //  const innerFn = outer();
+        //  // calling that const variable as a function returns the value of the second console.log
+        //  innerFn();
+
+        function createGreeting(greeting = '') {
+            const myGreet = greeting.toUpperCase();
+            return function(name) {
+                return `${myGreet} ${name}`;
+            }
+        }
+
+        const sayHello = createGreeting('hello');
+        const sayHey = createGreeting('hey');
+        console.log(sayHello('wes'));
+        console.log(sayHello('kait'));
+        console.log(sayHey('kait'));
+
+
+        function createGame(gameName) {
+            let score = 0;
+            return function win() {
+                score++;
+                return `Your name ${gameName} score is ${score}`;
+            }
+        }
+
+        const hockeyGame = createGame('Hockey');
+        const soccerGame = createGame('Soccer');
+    </script>
+</body>
+
+</html>
