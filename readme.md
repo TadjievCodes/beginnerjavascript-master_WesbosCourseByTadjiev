@@ -162,7 +162,7 @@ Note: Video #16, mostly watched this as a reference. **This may be useful in the
 Global Variables: These variables are available anywhere in the application. Everything attached to this global scope is contained within 'Window'.
 
 ```js
-const first = "yusuf"; // Function scoped
+const first = "Tadjiev"; // Function scoped
 let second = "second"; // Function scoped
 var age = 100; // Globally scoped - Window object
 ```
